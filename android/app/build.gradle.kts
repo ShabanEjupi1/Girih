@@ -1,8 +1,22 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
+}
+
+// Nënshkrimi i lëshimit. `key.properties` dhe `.jks` janë të gitignore-uara dhe
+// rrinë vetëm te makina që ndërton (te CI-ja i shkruan puna «Vendos çelësin»).
+//
+// !! Çelësi `girih-upload.jks` është KOPJE E VETME te `spacecode-brain/keys/`.
+//    Nëse humbet, ky aplikacion nuk përditësohet dot më kurrë: Android-i
+//    refuzon një paketë të nënshkruar me çelës tjetër, dhe Play-i do të donte
+//    paketë e listim krejt të ri.
+val keystoreProperties = Properties().apply {
+    val f = rootProject.file("key.properties")
+    if (f.exists()) f.inputStream().use { load(it) }
 }
 
 android {
@@ -20,21 +34,44 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "tech.spacecode.girih"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        minSdk = 24
+        // 🚨 Play kërkon **API 36 për çdo ngarkim të ri që nga 31 gushti 2026**.
+        // Me një numër më të ulët ngarkimi refuzohet te dera, para se ta shohë
+        // njeri. Ky aplikacion nis drejt e me 36, ndaj s'ka çfarë ngrihet vitin
+        // që vjen në panik.
+        targetSdk = 36
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        create("release") {
+            if (keystoreProperties.getProperty("storeFile") != null) {
+                storeFile = file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            // Pa `key.properties` bie prapa te çelësi i debug-ut, që e mban
+            // `flutter run --release` të punueshëm lokalisht — por një AAB i
+            // tillë refuzohet nga Play Console, ndaj CI-ja e kontrollon veçmas.
+            signingConfig = if (keystoreProperties.getProperty("storeFile") != null) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("debug")
+            }
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 }

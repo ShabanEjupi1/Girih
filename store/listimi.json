@@ -1,0 +1,46 @@
+{
+  "_": "Listimi i plotë për Google Play, i ngjitur me `node store/tools/play.mjs <çelësi.json> listimi tech.spacecode.girih store/listimi.json`.",
+  "__gjuha": "🔑 Tekstet duhen ngjitur PARA `details`: `defaultLanguage: sq` refuzohet nëse listimi shqip nuk ekziston ende brenda të njëjtit `edit`. play.mjs e bën këtë renditje vetë.",
+  "__reklamat": "Ky aplikacion NUK ka reklama, NUK ka blerje brenda tij dhe NUK bën asnjë kërkesë rrjeti. Prandaj përshkrimi e thotë hapur — dhe prandaj deklarata «Përmban reklama» te Console → App content duhet të jetë **Jo**. Nëse ndonjëherë shtohen reklama, ky premtim duhet hequr te TË DYJA gjuhët, te README-ja dhe te politika e privatësisë — te Tokërrgjiku i njëjti premtim mbijetoi një version me reklama.",
+  "listings": {
+    "sq": {
+      "title": "Girih — enigma me yje",
+      "shortDescription": "Lidh yjet binjakë dhe mbush rrjetën. 240 nivele, pa rrjet e pa reklama.",
+      "fullDescription": "Girih është një enigmë e qetë: tërhiq nga çdo yll te binjaku i tij me të njëjtën ngjyrë, mos i kryqëzo vijat, dhe mbush çdo katror të rrjetës.\n\n240 NIVELE, TË GJITHA TË DREJTA\nÇdo nivel ka një zgjidhje të VETME. Kjo nuk është premtim marketingu — është kusht gjenerimi: çdo kandidat për të cilin zgjidhësi gjen dy zgjidhje hidhet poshtë para se të hyjë në lojë. Prandaj kur ndien se zgjidhja jote duhej të pranohej, ajo pranohet.\n\nTETË BOTË\nNga 5×5 te 12×12, me vështirësi që rritet ngadalë. Bota tjetër hapet me dymbëdhjetë nivele të mbaruara — nën gjysmën e saj, që një nivel i vështirë të mos të ndalë.\n\nNJË SFIDË E RE ÇDO DITË\nE njëjta enigmë për të gjithë atë ditë, me numërim ditësh rresht.\n\nPA ASGJË QË TË PENGON\n• Pa rrjet: loja nuk bën asnjë kërkesë jashtë telefonit.\n• Pa reklama, pa blerje, pa llogari, pa njoftime.\n• Pa leje: aplikacioni nuk kërkon asnjë.\nNdihmat fitohen duke luajtur — një për çdo nivel të ri të zgjidhur me tre yje — jo duke paguar.\n\nE PËRSHTATSHME PËR SYRIN\nPaletë për daltonizëm me numra brenda nyjeve, tri tema (e errët, e ndritshme, pergamenë), dhe animacione që fiken nga cilësimet.\n\nGJEOMETRI, JO FIGURA\nE gjithë pamja — yjet tetëcepësh dhe fushat girih — vizatohet me kod. Nuk ka asnjë skedar pamjeje në aplikacion, ndaj ai mbetet i vogël dhe i mprehtë në çdo ekran."
+    },
+    "en-US": {
+      "title": "Girih — Star Link Puzzle",
+      "shortDescription": "Link the twin stars and fill the grid. 240 levels, offline, no ads.",
+      "fullDescription": "Girih is a quiet puzzle: drag from each star to its twin of the same colour, never cross a path, and fill every square of the grid.\n\n240 LEVELS, ALL OF THEM FAIR\nEvery level has exactly ONE solution. That is not a marketing promise — it is a generation rule: any candidate for which the solver finds two solutions is thrown away before it ever reaches the game. So when it feels like your solution should have been accepted, it is.\n\nEIGHT WORLDS\nFrom 5×5 to 12×12, with difficulty that climbs slowly. The next world opens after twelve completed levels — under half of it, so one hard puzzle never blocks you.\n\nA NEW CHALLENGE EVERY DAY\nThe same puzzle for everyone that day, with a day streak.\n\nNOTHING IN YOUR WAY\n• Offline: the game makes no request outside your phone.\n• No ads, no purchases, no account, no notifications.\n• No permissions: the app asks for none.\nHints are earned by playing — one for each new level solved with three stars — never bought.\n\nEASY ON THE EYES\nA colour-blind palette with numbers inside the nodes, three themes (dark, light, parchment), and animations you can switch off.\n\nGEOMETRY, NOT PICTURES\nThe whole look — eight-pointed stars and girih fields — is drawn in code. There is not a single image file in the app, so it stays small and stays sharp on any screen."
+    }
+  },
+  "images": {
+    "sq": {
+      "icon": "store/ikona-gen/play-ikona-512.png",
+      "featureGraphic": "store/ikona-gen/play-grafika-1024x500.png",
+      "phoneScreenshots": [
+        "store/assets/pamje-1-ballina.png",
+        "store/assets/pamje-2-loja.png",
+        "store/assets/pamje-3-botet.png",
+        "store/assets/pamje-4-nivelet.png",
+        "store/assets/pamje-5-statistika.png"
+      ]
+    },
+    "en-US": {
+      "icon": "store/ikona-gen/play-ikona-512.png",
+      "featureGraphic": "store/ikona-gen/play-grafika-1024x500.png",
+      "phoneScreenshots": [
+        "store/assets/pamje-1-ballina.png",
+        "store/assets/pamje-2-loja.png",
+        "store/assets/pamje-3-botet.png",
+        "store/assets/pamje-4-nivelet.png",
+        "store/assets/pamje-5-statistika.png"
+      ]
+    }
+  },
+  "details": {
+    "defaultLanguage": "sq",
+    "contactEmail": "shaban@shabanejupi.tech",
+    "contactWebsite": "https://girih.spacecode.tech"
+  }
+}

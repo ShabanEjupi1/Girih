@@ -1,0 +1,18 @@
+{
+  "_koment": [
+    "Emri i lëshimit dhe shënimet për çdo gjuhë, të lexuara nga store/tools/play.mjs:",
+    "  node store/tools/play.mjs <çelësi.json> ngarko tech.spacecode.girih app.aab alpha store/shenimet.json",
+    "🚨 Emri NUK u shfaqet përdoruesve — shërben vetëm që ti ta dallosh lëshimin te Console-i.",
+    "🚨 Shënimet i shihen testuesit: KUFIRI ËSHTË 500 SHKRONJA për gjuhë, dhe vetëm gjuhët që",
+    "   ekzistojnë te listimi (sq dhe en-US). Një gjuhë e panjohur e rrëzon :commit-in.",
+    "🚨 «gjendja»: sa kohë aplikacioni është «Draft» te Console-i, Play pranon VETËM «draft» —",
+    "   një «completed» bie te :commit me «Only releases with status draft may be created on",
+    "   draft app», dhe bie PASI AAB-ja ka hipur. Pas publikimit të parë ktheje në «completed»."
+  ],
+  "gjendja": "draft",
+  "emri": "1.0.0 (1) — lëshimi i parë",
+  "shenimet": {
+    "sq": "Lëshimi i parë i Girih-ut.\n\n• 240 nivele në tetë botë, nga 5×5 te 12×12 — secili me një zgjidhje të vetme.\n• Një sfidë e re çdo ditë, e njëjtë për të gjithë, me numërim ditësh rresht.\n• Pa rrjet, pa reklama, pa blerje, pa llogari dhe pa asnjë leje.\n• Paletë për daltonizëm, tri tema, dhe animacione që fiken.",
+    "en-US": "The first release of Girih.\n\n• 240 levels across eight worlds, from 5×5 to 12×12 — each with exactly one solution.\n• A new challenge every day, the same for everyone, with a day streak.\n• Offline, no ads, no purchases, no account and no permissions at all.\n• Colour-blind palette, three themes, and animations you can switch off."
+  }
+}

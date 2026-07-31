@@ -1,0 +1,13 @@
+[
+  { "wait": 900, "shot": "pamje-1-ballina" },
+
+  { "tap": [180, 268], "wait": 2400, "shot": "pamje-2-loja" },
+  { "tap": [22, 40],   "wait": 1400 },
+
+  { "tap": [180, 356], "wait": 1600, "shot": "pamje-3-botet" },
+  { "tap": [180, 120], "wait": 1600, "shot": "pamje-4-nivelet" },
+  { "tap": [22, 40],   "wait": 1000 },
+  { "tap": [22, 40],   "wait": 1200 },
+
+  { "tap": [180, 470], "wait": 1600, "shot": "pamje-5-statistika" }
+]
