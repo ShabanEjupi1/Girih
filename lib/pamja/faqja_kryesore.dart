@@ -5,7 +5,6 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import '../loja/nivel.dart';
 import '../te_dhena/katalogu.dart';
 import '../te_dhena/perkthimi.dart';
 import '../te_dhena/ruajtja.dart';
@@ -112,22 +111,8 @@ class FaqjaKryesore extends StatelessWidget {
         nivel: Katalogu.merr(b, nr),
         ruajtja: ruajtja,
         titulli: '${Katalogu.emriIBotes(b)} · $nr',
-        tjetri: () => _pasKetij(b, nr),
       ),
     ));
-  }
-
-  /// Zinxhiri i niveleve nuk ndalet te fundi i botës: kalon te e ardhshmja, dhe
-  /// vetëm te fundi i lojës kthen `null`. Një lojtar në vrull nuk duhet nxjerrë
-  /// nga vrulli për ta shtypur dy herë «prapa».
-  (Nivel, String)? _pasKetij(int bota, int numri) {
-    var b = bota, nr = numri + 1;
-    if (nr > Katalogu.nivelaNe(b)) {
-      b++;
-      nr = 1;
-    }
-    if (b > Katalogu.sasiaEBoteve) return null;
-    return (Katalogu.merr(b, nr), '${Katalogu.emriIBotes(b)} · $nr');
   }
 
   void _ditorja(BuildContext context) {

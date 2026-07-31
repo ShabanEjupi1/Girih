@@ -3,7 +3,6 @@ library;
 
 import 'package:flutter/material.dart';
 
-import '../loja/nivel.dart';
 import '../te_dhena/katalogu.dart';
 import '../te_dhena/perkthimi.dart';
 import '../te_dhena/ruajtja.dart';
@@ -200,21 +199,10 @@ class _FaqjaENivelevState extends State<FaqjaENiveleve> {
         nivel: Katalogu.merr(widget.bota, nr),
         ruajtja: widget.ruajtja,
         titulli: '${Katalogu.emriIBotes(widget.bota)} · $nr',
-        tjetri: () => _pasKetij(widget.bota, nr),
       ),
     ));
     // Yjet e sapofituar duhen parë kur lojtari kthehet, përndryshe rrjeta duket
     // e pandryshuar dhe fitorja ndihet e humbur.
     if (mounted) setState(() {});
-  }
-
-  (Nivel, String)? _pasKetij(int bota, int numri) {
-    var b = bota, nr = numri + 1;
-    if (nr > Katalogu.nivelaNe(b)) {
-      b++;
-      nr = 1;
-    }
-    if (b > Katalogu.sasiaEBoteve) return null;
-    return (Katalogu.merr(b, nr), '${Katalogu.emriIBotes(b)} · $nr');
   }
 }

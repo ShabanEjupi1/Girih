@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 
 import '../loja/motori.dart';
 import '../loja/nivel.dart';
+import '../te_dhena/katalogu.dart';
 import '../te_dhena/perkthimi.dart';
 import '../te_dhena/ruajtja.dart';
 import 'piktori.dart';
@@ -19,15 +20,11 @@ class FaqjaELojes extends StatefulWidget {
     required this.nivel,
     required this.ruajtja,
     required this.titulli,
-    this.tjetri,
   });
 
   final Nivel nivel;
   final Ruajtja ruajtja;
   final String titulli;
-
-  /// Çka të hapet pas fitores. `null` te sfida e ditës, e cila s'ka vazhdim.
-  final (Nivel, String)? Function()? tjetri;
 
   @override
   State<FaqjaELojes> createState() => _FaqjaELojesState();
@@ -377,7 +374,7 @@ class _FaqjaELojesState extends State<FaqjaELojes>
               Expanded(
                 child: FilledButton(
                   onPressed: () {
-                    final tjetri = widget.tjetri?.call();
+                    final tjetri = Katalogu.pasNivelit(widget.nivel.id);
                     if (tjetri == null) {
                       Navigator.of(context).pop();
                       return;
@@ -387,11 +384,12 @@ class _FaqjaELojesState extends State<FaqjaELojes>
                         nivel: tjetri.$1,
                         ruajtja: widget.ruajtja,
                         titulli: tjetri.$2,
-                        tjetri: widget.tjetri,
                       ),
                     ));
                   },
-                  child: Text(widget.tjetri == null ? _f('mbyll') : _f('tjetri')),
+                  child: Text(Katalogu.pasNivelit(widget.nivel.id) == null
+                      ? _f('mbyll')
+                      : _f('tjetri')),
                 ),
               ),
             ],
