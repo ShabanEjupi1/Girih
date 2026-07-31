@@ -16,25 +16,25 @@
   },
   "images": {
     "sq": {
-      "icon": "store/ikona-gen/play-ikona-512.png",
-      "featureGraphic": "store/ikona-gen/play-grafika-1024x500.png",
+      "icon": "ikona-gen/play-ikona-512.png",
+      "featureGraphic": "ikona-gen/play-grafika-1024x500.png",
       "phoneScreenshots": [
-        "store/assets/pamje-1-ballina.png",
-        "store/assets/pamje-2-loja.png",
-        "store/assets/pamje-3-botet.png",
-        "store/assets/pamje-4-nivelet.png",
-        "store/assets/pamje-5-statistika.png"
+        "assets/pamje-1-ballina.png",
+        "assets/pamje-2-loja.png",
+        "assets/pamje-3-botet.png",
+        "assets/pamje-4-nivelet.png",
+        "assets/pamje-5-statistika.png"
       ]
     },
     "en-US": {
-      "icon": "store/ikona-gen/play-ikona-512.png",
-      "featureGraphic": "store/ikona-gen/play-grafika-1024x500.png",
+      "icon": "ikona-gen/play-ikona-512.png",
+      "featureGraphic": "ikona-gen/play-grafika-1024x500.png",
       "phoneScreenshots": [
-        "store/assets/pamje-1-ballina.png",
-        "store/assets/pamje-2-loja.png",
-        "store/assets/pamje-3-botet.png",
-        "store/assets/pamje-4-nivelet.png",
-        "store/assets/pamje-5-statistika.png"
+        "assets/pamje-1-ballina.png",
+        "assets/pamje-2-loja.png",
+        "assets/pamje-3-botet.png",
+        "assets/pamje-4-nivelet.png",
+        "assets/pamje-5-statistika.png"
       ]
     }
   },
