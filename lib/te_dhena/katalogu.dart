@@ -35,16 +35,44 @@ class Katalogu {
   /// fundi i lojës kthen `null`. Sfida e ditës (`d-…`) nuk përputhet me formën,
   /// pra kthen `null` vetvetiu — ajo s'ka vazhdim.
   static (Nivel, String)? pasNivelit(String id) {
-    final m = RegExp(r'^b(\d+)-(\d+)$').firstMatch(id);
-    if (m == null) return null;
-    var b = int.parse(m.group(1)!);
-    var nr = int.parse(m.group(2)!) + 1;
-    if (b < 1 || b > sasiaEBoteve) return null;
+    final pj = pjeset(id);
+    if (pj == null) return null;
+    var (b, nr) = pj;
+    nr++;
     if (nr > nivelaNe(b)) {
       b++;
       nr = 1;
     }
     if (b > sasiaEBoteve) return null;
+    return (merr(b, nr), '${emriIBotes(b)} · $nr');
+  }
+
+  /// Bota dhe numri brenda saj, nxjerrë nga id-ja (`b3-17` → `(3, 17)`).
+  /// Kthen `null` për çdo id që nuk është e një niveli të katalogut — sfida e
+  /// ditës (`d-2026-07-31`) është pikërisht ai rast.
+  static (int, int)? pjeset(String id) {
+    final m = RegExp(r'^b(\d+)-(\d+)$').firstMatch(id);
+    if (m == null) return null;
+    final b = int.parse(m.group(1)!);
+    final nr = int.parse(m.group(2)!);
+    if (b < 1 || b > sasiaEBoteve) return null;
+    if (nr < 1 || nr > nivelaNe(b)) return null;
+    return (b, nr);
+  }
+
+  /// Niveli para atij me id-në [id] — pasqyra e [pasNivelit], që lojtari të
+  /// kthehet një hap prapa pa kaluar nga menyja. Te niveli i parë i një bote
+  /// kalon te i fundit i asaj para saj; te `b1-1` kthen `null`.
+  static (Nivel, String)? paraNivelit(String id) {
+    final pj = pjeset(id);
+    if (pj == null) return null;
+    var (b, nr) = pj;
+    nr--;
+    if (nr < 1) {
+      b--;
+      if (b < 1) return null;
+      nr = nivelaNe(b);
+    }
     return (merr(b, nr), '${emriIBotes(b)} · $nr');
   }
 

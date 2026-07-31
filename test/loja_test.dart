@@ -210,6 +210,33 @@ void main() {
       expect(Katalogu.pasNivelit('b99-1'), isNull);
       expect(Katalogu.pasNivelit('gjepura'), isNull);
     });
+
+    test('«para» është e anasjellta e «pas» te çdo hap i zinxhirit', () {
+      var id = 'b1-1';
+      while (true) {
+        final tjetri = Katalogu.pasNivelit(id);
+        if (tjetri == null) break;
+        // Nga niveli tjetër, një hap prapa duhet të kthejë saktësisht këtu.
+        expect(Katalogu.paraNivelit(tjetri.$1.id)!.$1.id, id,
+            reason: 'prapa nga ${tjetri.$1.id} nuk kthen te $id');
+        id = tjetri.$1.id;
+      }
+    });
+
+    test('para nivelit kalon te bota e mëparshme dhe ndalet te b1-1', () {
+      expect(Katalogu.paraNivelit('b2-1')!.$1.id,
+          'b1-${Katalogu.nivelaNe(1)}');
+      expect(Katalogu.paraNivelit('b1-1'), isNull);
+      expect(Katalogu.paraNivelit('d-2026-08-01'), isNull);
+    });
+
+    test('pjesët e id-së nxirren vetëm për nivele që ekzistojnë vërtet', () {
+      expect(Katalogu.pjeset('b3-7'), (3, 7));
+      expect(Katalogu.pjeset('b1-0'), isNull);
+      expect(Katalogu.pjeset('b1-${Katalogu.nivelaNe(1) + 1}'), isNull);
+      expect(Katalogu.pjeset('b99-1'), isNull);
+      expect(Katalogu.pjeset('d-2026-08-01'), isNull);
+    });
   });
 }
 
