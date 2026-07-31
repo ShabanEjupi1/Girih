@@ -50,3 +50,9 @@ app.*.map.json
 .flutter-plugins-dependencies
 .idea/
 *.iml
+
+# 🔑 Nënshkrimi i lëshimit. Çelësi rri te `spacecode-brain/keys/girih-upload.jks`
+# dhe te sekreti `ANDROID_KEYSTORE_BASE64` i GitHub-it — kurrë këtu.
+android/key.properties
+android/app/*.jks
+*.keystore

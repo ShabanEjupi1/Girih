@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Sfondi i ikonës adaptive: i njëjti qymyr si `sfondi` te tema e errët
+         (`lib/pamja/tema.dart`), që ikona te ekrani kryesor dhe aplikacioni të
+         duken si i njëjti send. -->
+    <color name="ic_launcher_background">#0E1116</color>
+</resources>

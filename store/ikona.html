@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="sq">
+<meta charset="utf-8">
+<title>Ikona e Girih-ut</title>
+<!--
+  Ikona: tri yje tetëcepësh të mbivendosur — saktësisht stema që vizaton
+  `_PiktoriIStemes` te `lib/pamja/faqja_kryesore.dart`, me të njëjtat ngjyra
+  (`tema.dart`: sfondi #0E1116, ari #FFC914, bruzi #17BEBB, vjollca #6A4C93).
+
+  🕌 Asnjë qenie e gjallë: e gjithë loja është gjeometri girih, dhe ikona duhet
+  ta thotë këtë me një vështrim. Kjo është edhe arsyeja pse depoja s'ka asnjë
+  skedar pamjeje — çdo PNG këtu del nga ky SVG.
+
+  ?fg=1        → pa sfond (pjesa e përparme e ikonës adaptive të Android-it)
+  ?maskable=1  → me sfond, por figura brenda zonës së sigurt 66%
+-->
+<style>
+  html, body { margin: 0; height: 100%; background: transparent; }
+  svg { display: block; width: 100vw; height: 100vh; }
+</style>
+
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fusha" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#1B2129"/>
+      <stop offset="100%" stop-color="#0E1116"/>
+    </linearGradient>
+  </defs>
+
+  <rect id="sfondi" width="512" height="512" fill="url(#fusha)"/>
+
+  <g id="figura" fill="none" stroke-linejoin="round" stroke-width="17">
+    <!-- Rrezet dhe rrotullimet janë ato të stemës: 1, 0.78, 0.56 e rrezes, me
+         0, 0.26 dhe 0.52 radianë rrotullim. Vija e brendshme e yllit është
+         0.52 e së jashtmes. -->
+    <path id="y1" stroke="#FFC914" stroke-opacity="0.85"/>
+    <path id="y2" stroke="#17BEBB" stroke-opacity="0.63"/>
+    <path id="y3" stroke="#6A4C93" stroke-opacity="0.41"/>
+  </g>
+</svg>
+
+<script>
+  const yll = (cx, cy, r, rrotullim) => {
+    let d = '';
+    for (let i = 0; i < 16; i++) {
+      const rr = i % 2 === 0 ? r : r * 0.52;
+      const kend = rrotullim - Math.PI / 2 + (i * Math.PI) / 8;
+      d += `${i === 0 ? 'M' : 'L'}${(cx + rr * Math.cos(kend)).toFixed(2)} `
+         + `${(cy + rr * Math.sin(kend)).toFixed(2)} `;
+    }
+    return d + 'Z';
+  };
+  const R = 172;
+  ['y1', 'y2', 'y3'].forEach((id, i) =>
+    document.getElementById(id).setAttribute('d',
+      yll(256, 256, R * (1 - i * 0.22), i * 0.26)));
+
+  const q = new URLSearchParams(location.search);
+  if (q.has('fg')) {
+    if (!q.has('maskable')) document.getElementById('sfondi').remove();
+    const k = 0.66, d = (512 - 512 * k) / 2;
+    document.getElementById('figura')
+      .setAttribute('transform', `translate(${d} ${d}) scale(${k})`);
+  }
+</script>
+</html>

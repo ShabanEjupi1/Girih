@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="sq">
+<meta charset="utf-8">
+<title>Grafika e veçorive — Girih</title>
+<style>
+  html, body { margin: 0; height: 100%; }
+  body {
+    width: 1024px; height: 500px;
+    background: radial-gradient(120% 140% at 74% 28%, #1B2129 0%, #0E1116 64%);
+    display: flex; align-items: center; gap: 48px;
+    padding: 0 72px; box-sizing: border-box;
+    font-family: "DejaVu Sans", "Liberation Sans", system-ui, sans-serif;
+    color: #E6EAF0;
+  }
+  .fjala { flex: 1; }
+  h1 { margin: 0; font-size: 88px; line-height: 1; letter-spacing: 6px; font-weight: 800; }
+  p { margin: 18px 0 0; font-size: 29px; line-height: 1.35; color: #8A93A0; max-width: 18ch; }
+  .vija { margin-top: 26px; width: 148px; height: 8px; border-radius: 4px; background: #FFC914; }
+  svg { flex: 0 0 auto; width: 360px; height: 360px; }
+</style>
+
+<div class="fjala">
+  <h1>GIRIH</h1>
+  <p>Lidh nyjet, zbulo yllin. 240 nivele, pa rrjet.</p>
+  <div class="vija"></div>
+</div>
+
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <g id="figura" fill="none" stroke-linejoin="round" stroke-width="17">
+    <path id="y1" stroke="#FFC914" stroke-opacity="0.85"/>
+    <path id="y2" stroke="#17BEBB" stroke-opacity="0.63"/>
+    <path id="y3" stroke="#6A4C93" stroke-opacity="0.41"/>
+  </g>
+</svg>
+
+<script>
+  const yll = (cx, cy, r, rrotullim) => {
+    let d = '';
+    for (let i = 0; i < 16; i++) {
+      const rr = i % 2 === 0 ? r : r * 0.52;
+      const kend = rrotullim - Math.PI / 2 + (i * Math.PI) / 8;
+      d += `${i === 0 ? 'M' : 'L'}${(cx + rr * Math.cos(kend)).toFixed(2)} `
+         + `${(cy + rr * Math.sin(kend)).toFixed(2)} `;
+    }
+    return d + 'Z';
+  };
+  ['y1', 'y2', 'y3'].forEach((id, i) =>
+    document.getElementById(id).setAttribute('d',
+      yll(256, 256, 200 * (1 - i * 0.22), i * 0.26)));
+</script>
+</html>
