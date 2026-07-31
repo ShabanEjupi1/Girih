@@ -24,6 +24,30 @@ class Katalogu {
   static int get gjithsejNivele =>
       botet.fold(0, (a, b) => a + b.nivelet.length);
 
+  /// Niveli që vjen pas atij me id-në [id] (`b3-17`), bashkë me titullin e tij.
+  ///
+  /// 🚨 Llogaritet nga id-ja e nivelit që sapo u mbarua, JO nga një numër i
+  /// kapur kur u hap loja. Varianti i vjetër ia kalonte faqes së re të njëjtën
+  /// mbyllje, ndaj «Tjetri» e ringarkonte përjetësisht të njëjtin nivel dhe
+  /// lojtari ngecte. Nga id-ja, çdo faqe e di vetë ku ndodhet.
+  ///
+  /// Zinxhiri nuk ndalet te fundi i botës: kalon te e ardhshmja, dhe vetëm te
+  /// fundi i lojës kthen `null`. Sfida e ditës (`d-…`) nuk përputhet me formën,
+  /// pra kthen `null` vetvetiu — ajo s'ka vazhdim.
+  static (Nivel, String)? pasNivelit(String id) {
+    final m = RegExp(r'^b(\d+)-(\d+)$').firstMatch(id);
+    if (m == null) return null;
+    var b = int.parse(m.group(1)!);
+    var nr = int.parse(m.group(2)!) + 1;
+    if (b < 1 || b > sasiaEBoteve) return null;
+    if (nr > nivelaNe(b)) {
+      b++;
+      nr = 1;
+    }
+    if (b > sasiaEBoteve) return null;
+    return (merr(b, nr), '${emriIBotes(b)} · $nr');
+  }
+
   /// Niveli i parë i pazgjidhur, për butonin «Vazhdo».
   static (int, int)? iPari(bool Function(String) zgjidhur) {
     for (var b = 1; b <= sasiaEBoteve; b++) {

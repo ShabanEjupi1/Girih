@@ -172,6 +172,44 @@ void main() {
       expect(a.kodo(), b.kodo());
       expect(a.id, 'd-2026-08-01');
     });
+
+    // 🚨 Rrëshqitja nga fitorja te niveli tjetër ishte E PRISHUR: butoni
+    // «Tjetri» mbante një mbyllje me numrin e nivelit nga i cili u nis, dhe
+    // faqja e re e trashëgonte të pandryshuar — pra pas hapit të parë loja e
+    // ringarkonte përjetësisht të njëjtin nivel. Ky test e ndjek zinxhirin nga
+    // fillimi te fundi: nëse ndalet ose përsëritet, ai dështon.
+    test('zinxhiri i niveleve ecën përpara pa u përsëritur, nga fillimi në fund',
+        () {
+      final pare = <String>{};
+      var id = 'b1-1';
+      var hapa = 1;
+      pare.add(id);
+      while (true) {
+        final tjetri = Katalogu.pasNivelit(id);
+        if (tjetri == null) break;
+        id = tjetri.$1.id;
+        expect(pare.add(id), isTrue, reason: 'niveli $id u dha dy herë');
+        hapa++;
+        expect(hapa, lessThanOrEqualTo(Katalogu.gjithsejNivele));
+      }
+      expect(hapa, Katalogu.gjithsejNivele);
+      expect(id, 'b${Katalogu.sasiaEBoteve}-'
+          '${Katalogu.nivelaNe(Katalogu.sasiaEBoteve)}');
+    });
+
+    test('zinxhiri kalon te bota tjetër dhe ndalet vetëm te fundi', () {
+      final fundiIBotes1 = 'b1-${Katalogu.nivelaNe(1)}';
+      expect(Katalogu.pasNivelit(fundiIBotes1)!.$1.id, 'b2-1');
+      final fundi = 'b${Katalogu.sasiaEBoteve}-'
+          '${Katalogu.nivelaNe(Katalogu.sasiaEBoteve)}';
+      expect(Katalogu.pasNivelit(fundi), isNull);
+    });
+
+    test('sfida e ditës nuk ka vazhdim', () {
+      expect(Katalogu.pasNivelit('d-2026-08-01'), isNull);
+      expect(Katalogu.pasNivelit('b99-1'), isNull);
+      expect(Katalogu.pasNivelit('gjepura'), isNull);
+    });
   });
 }
 
