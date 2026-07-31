@@ -5,14 +5,17 @@
     "🚨 Emri NUK u shfaqet përdoruesve — shërben vetëm që ti ta dallosh lëshimin te Console-i.",
     "🚨 Shënimet i shihen testuesit: KUFIRI ËSHTË 500 SHKRONJA për gjuhë, dhe vetëm gjuhët që",
     "   ekzistojnë te listimi (sq dhe en-US). Një gjuhë e panjohur e rrëzon :commit-in.",
+    "🚨 Emri i lëshimit: maksimumi 50 shkronja.",
     "🚨 «gjendja»: sa kohë aplikacioni është «Draft» te Console-i, Play pranon VETËM «draft» —",
     "   një «completed» bie te :commit me «Only releases with status draft may be created on",
-    "   draft app», dhe bie PASI AAB-ja ka hipur. Pas publikimit të parë ktheje në «completed»."
+    "   draft app», dhe bie PASI AAB-ja ka hipur. Pas publikimit të parë ktheje në «completed».",
+    "🚨 MOS e redakto këtë skedar me perl ose sed pa `-CSD`: një kalim i vetëm pa të e shkruan",
+    "   tekstin dy herë të koduar (ë → Ã«), dhe JSON-i mbetet i vlefshëm ndaj gabimi nuk duket."
   ],
   "gjendja": "draft",
-  "emri": "1.0.0 (1) — lëshimi i parë",
+  "emri": "1.1.0 (2) — kalimi i shpejtë mes niveleve",
   "shenimet": {
-    "sq": "Lëshimi i parë i Girih-ut.\n\n• 240 nivele në tetë botë, nga 5×5 te 12×12 — secili me një zgjidhje të vetme.\n• Një sfidë e re çdo ditë, e njëjtë për të gjithë, me numërim ditësh rresht.\n• Pa rrjet, pa reklama, pa blerje, pa llogari dhe pa asnjë leje.\n• Paletë për daltonizëm, tri tema, dhe animacione që fiken.",
-    "en-US": "The first release of Girih.\n\n• 240 levels across eight worlds, from 5×5 to 12×12 — each with exactly one solution.\n• A new challenge every day, the same for everyone, with a day streak.\n• Offline, no ads, no purchases, no account and no permissions at all.\n• Colour-blind palette, three themes, and animations you can switch off."
+    "sq": "• I ri: kalim i shpejtë mes niveleve. Butoni «Nivelet» hap rrjetën e kësaj bote me yjet dhe rekordin e lëvizjeve, dhe kalon aty ku prek — pa u kthyer te menyja.\n• I ri: një shigjetë për nivelin e mëparshëm, pranë daljes.\n• U rregullua: te disa shfletues loja mbetej me ndërtimin e vjetër dhe niveli nuk ndryshonte pas fitores. Kjo prek vetëm versionin në internet.",
+    "en-US": "• New: quick jumping between levels. The \"Levels\" button opens this world's grid with your stars and best move count, and jumps wherever you tap — without going back to the menu.\n• New: an arrow to the previous level, next to the exit.\n• Fixed: on some browsers the game kept serving the old build and the level would not change after a win. This affected the web version only."
   }
 }

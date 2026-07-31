@@ -161,6 +161,24 @@ class _FaqjaELojesState extends State<FaqjaELojes>
     if (_motori.fituar && !_uRuajt) await _fito();
   }
 
+  /// Ndërron nivelin në vend. `pushReplacement` do të thotë se një varg i gjatë
+  /// nivelesh nuk e rrit stivën, dhe se «prapa» kthen te lista e niveleve e jo
+  /// te secili nivel i luajtur para tij.
+  ///
+  /// 🚨 Synimi llogaritet nga id-ja e nivelit të tanishëm sa herë shtypet
+  /// butoni, kurrë nga një vlerë e kapur kur u ndërtua faqja — pikërisht ai
+  /// gabim e mbante lojtarin përjetësisht te i njëjti nivel.
+  void _kalo((Nivel, String)? synimi) {
+    if (synimi == null) return;
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+      builder: (_) => FaqjaELojes(
+        nivel: synimi.$1,
+        ruajtja: widget.ruajtja,
+        titulli: synimi.$2,
+      ),
+    ));
+  }
+
   void _njofto(String teksti) {
     ScaffoldMessenger.of(context)
       ..clearSnackBars()
@@ -243,6 +261,16 @@ class _FaqjaELojesState extends State<FaqjaELojes>
                 onPressed: () => Navigator.of(context).pop(),
                 tooltip: _f('dil'),
               ),
+              // Një hap prapa në zinxhir. I fshehur — jo i fikur — te `b1-1`
+              // dhe te sfida e ditës, që rreshti të mos mbajë një buton që nuk
+              // bën kurrë asgjë.
+              if (Katalogu.paraNivelit(widget.nivel.id) != null)
+                IconButton(
+                  visualDensity: VisualDensity.compact,
+                  icon: const Icon(Icons.chevron_left),
+                  onPressed: () => _kalo(Katalogu.paraNivelit(widget.nivel.id)),
+                  tooltip: _f('paraardhesi'),
+                ),
               Expanded(
                 child: Text(
                   widget.titulli,
@@ -308,9 +336,118 @@ class _FaqjaELojesState extends State<FaqjaELojes>
               '${_f('ndihme')} (${widget.ruajtja.ndihma})',
               _motori.fituar ? null : _ndihmo,
             ),
+            // Kalimi mes niveleve pa u kthyer te menyja. I fikur te sfida e
+            // ditës, e vetmja që nuk i përket asnjë bote.
+            _buton(
+              n,
+              Icons.grid_view_rounded,
+              _f('nivelet'),
+              Katalogu.pjeset(widget.nivel.id) == null ? null : _zgjidhNivel,
+            ),
           ],
         ),
       );
+
+  /// Fleta e kalimit të shpejtë: rrjeta e kësaj bote, me yjet e fituar dhe
+  /// rekordin e lëvizjeve. Kalimi bëhet me `pushReplacement`, ndaj stiva nuk
+  /// rritet sado nivele të kalohen njëri pas tjetrit.
+  Future<void> _zgjidhNivel() async {
+    final pj = Katalogu.pjeset(widget.nivel.id);
+    if (pj == null) return;
+    final (bota, tanishmi) = pj;
+    final n = Ngjyrat.per(_c.pamja);
+
+    final zgjedhur = await showModalBottomSheet<int>(
+      context: context,
+      backgroundColor: n.fusha,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                '${_f('bota')} $bota · ${Katalogu.emriIBotes(bota)}',
+                style: TextStyle(
+                    color: n.teksti, fontSize: 17, fontWeight: FontWeight.w800),
+              ),
+              const SizedBox(height: 12),
+              Flexible(
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  padding: EdgeInsets.zero,
+                  gridDelegate:
+                      const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 78,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                  ),
+                  itemCount: Katalogu.nivelaNe(bota),
+                  itemBuilder: (context, i) {
+                    final nr = i + 1;
+                    final yje = widget.ruajtja.yjetE('b$bota-$nr');
+                    final rekordi =
+                        widget.ruajtja.levizjetMeTeMira('b$bota-$nr');
+                    final ky = nr == tanishmi;
+                    return Material(
+                      color: ky
+                          ? n.theksi.withValues(alpha: 0.30)
+                          : yje > 0
+                              ? n.theksi.withValues(alpha: 0.14)
+                              : n.qeliza,
+                      borderRadius: BorderRadius.circular(12),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(12),
+                        onTap: ky ? null : () => Navigator.of(context).pop(nr),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('$nr',
+                                style: TextStyle(
+                                    color: n.teksti,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w800)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                for (var s = 0; s < 3; s++)
+                                  Icon(
+                                    s < yje
+                                        ? Icons.star_rounded
+                                        : Icons.star_border_rounded,
+                                    size: 10,
+                                    color:
+                                        s < yje ? n.theksi : n.tekstiZbehte,
+                                  ),
+                              ],
+                            ),
+                            Text(
+                              rekordi == null ? '·' : '$rekordi',
+                              style: TextStyle(
+                                  color: n.tekstiZbehte, fontSize: 10),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    if (zgjedhur == null || !mounted) return;
+    _kalo((
+      Katalogu.merr(bota, zgjedhur),
+      '${Katalogu.emriIBotes(bota)} · $zgjedhur',
+    ));
+  }
 
   Widget _buton(Ngjyrat n, IconData ikona, String etiketa, VoidCallback? veprim) {
     final aktiv = veprim != null;
@@ -379,13 +516,7 @@ class _FaqjaELojesState extends State<FaqjaELojes>
                       Navigator.of(context).pop();
                       return;
                     }
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (_) => FaqjaELojes(
-                        nivel: tjetri.$1,
-                        ruajtja: widget.ruajtja,
-                        titulli: tjetri.$2,
-                      ),
-                    ));
+                    _kalo(tjetri);
                   },
                   child: Text(Katalogu.pasNivelit(widget.nivel.id) == null
                       ? _f('mbyll')
