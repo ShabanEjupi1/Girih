@@ -192,13 +192,13 @@ class _FaqjaELojesState extends State<FaqjaELojes>
     // nuk shfaqin asgjë.
     await Ads.maybeShowAfterLevel();
     if (!mounted) return;
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
+    unawaited(Navigator.of(context).pushReplacement(MaterialPageRoute(
       builder: (_) => FaqjaELojes(
         nivel: synimi.$1,
         ruajtja: widget.ruajtja,
         titulli: synimi.$2,
       ),
-    ));
+    )));
   }
 
   void _njofto(String teksti) {
@@ -522,10 +522,10 @@ class _FaqjaELojesState extends State<FaqjaELojes>
     );
 
     if (zgjedhur == null || !mounted) return;
-    _kalo((
+    unawaited(_kalo((
       Katalogu.merr(bota, zgjedhur),
       '${Katalogu.emriIBotes(bota)} · $zgjedhur',
-    ));
+    )));
   }
 
   Widget _buton(Ngjyrat n, IconData ikona, String etiketa, VoidCallback? veprim) {
