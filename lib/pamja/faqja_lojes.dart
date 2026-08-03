@@ -6,6 +6,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../app/ads.dart';
 import '../loja/motori.dart';
 import '../loja/nivel.dart';
 import '../te_dhena/katalogu.dart';
@@ -150,8 +151,23 @@ class _FaqjaELojesState extends State<FaqjaELojes>
 
   Future<void> _ndihmo() async {
     if (widget.ruajtja.ndihma <= 0) {
-      _njofto(_f('pa_ndihma'));
-      return;
+      // Ndihmat fitohen duke luajtur mirë; nga 1.2.0 mund të fitohet një edhe
+      // duke parë një reklamë — me dëshirë, kurrë e detyruar. Pa reklama të
+      // disponueshme (web, pa rrjet) sillet saktësisht si më parë.
+      if (!Ads.ready) {
+        _njofto(_f('pa_ndihma'));
+        return;
+      }
+      final pranoi = await _kerkoNdihmeMeReklame();
+      if (!pranoi || !mounted) return;
+      // 🔑 `showRewarded` kthen `false` edhe kur rrjeti nuk u përgjigj. Lojtari
+      // që PRANOI ta shohë reklamën nuk ndëshkohet për një rrjet të ngadaltë:
+      // ndihma jepet gjithsesi. Humbja e mundshme është një ndihmë; humbja
+      // tjetër do të ishte lojtari.
+      await Ads.showRewarded();
+      await widget.ruajtja.shtoNdihme(1);
+      if (!mounted) return;
+      setState(() {});
     }
     final id = _motori.ndihmo();
     if (id == null) return;
@@ -168,8 +184,14 @@ class _FaqjaELojesState extends State<FaqjaELojes>
   /// 🚨 Synimi llogaritet nga id-ja e nivelit të tanishëm sa herë shtypet
   /// butoni, kurrë nga një vlerë e kapur kur u ndërtua faqja — pikërisht ai
   /// gabim e mbante lojtarin përjetësisht te i njëjti nivel.
-  void _kalo((Nivel, String)? synimi) {
+  Future<void> _kalo((Nivel, String)? synimi) async {
     if (synimi == null) return;
+    // 🚨 Reklama vjen PARA kalimit, jo pas fitores: kështu lojtari e sheh
+    // rezultatin e vet, yjet dhe animacionin pa i ndërprerë askush. Vetë
+    // `maybeShowAfterLevel` vendos nëse ka ardhur radha — shumica e kalimeve
+    // nuk shfaqin asgjë.
+    await Ads.maybeShowAfterLevel();
+    if (!mounted) return;
     Navigator.of(context).pushReplacement(MaterialPageRoute(
       builder: (_) => FaqjaELojes(
         nivel: synimi.$1,
@@ -183,6 +205,34 @@ class _FaqjaELojesState extends State<FaqjaELojes>
     ScaffoldMessenger.of(context)
       ..clearSnackBars()
       ..showSnackBar(SnackBar(content: Text(teksti)));
+  }
+
+  /// Pyetja para reklamës me shpërblim. Play-i e kërkon këtë hap: një reklamë
+  /// me shpërblim që niset pa e pyetur lojtarin numërohet si reklamë e
+  /// papritur, jo me dëshirë.
+  Future<bool> _kerkoNdihmeMeReklame() async {
+    final n = Ngjyrat.per(_c.pamja);
+    return await showDialog<bool>(
+          context: context,
+          builder: (context) => AlertDialog(
+            backgroundColor: n.fusha,
+            title: Text(_f('pa_ndihma_titull'),
+                style: TextStyle(color: n.teksti, fontSize: 18)),
+            content: Text(_f('ndihme_me_reklame'),
+                style: TextStyle(color: n.tekstiZbehte)),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text(_f('jo_faleminderit')),
+              ),
+              FilledButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: Text(_f('shih_reklamen')),
+              ),
+            ],
+          ),
+        ) ??
+        false;
   }
 
   Future<void> _ndaj() async {
@@ -299,6 +349,35 @@ class _FaqjaELojesState extends State<FaqjaELojes>
               valueColor: AlwaysStoppedAnimation(n.theksi),
             ),
           ),
+          // 🚨 «E mbarova nivelin dhe nuk ka buton për të vazhduar.»
+          //
+          // Kjo ishte ankesa e Shabanit te «Rrota 8» (`b2-8`), dhe kodi nuk
+          // kishte faj: fitorja kërkon TË DYJA — çdo çift i lidhur DHE çdo
+          // qelizë e mbushur. Kur lidhen të gjitha nyjet por mbeten qeliza
+          // boshe, loja nuk ishte fituar, ndaj fleta e fitores — dhe me të
+          // butoni «Niveli tjetër» — nuk shfaqej fare. Lojtari e lexon këtë si
+          // buton që mungon, jo si nivel të pambaruar, sepse pamja nuk i thotë
+          // asgjë: të gjitha nyjet duken të lidhura.
+          //
+          // Rregulli i lojës nuk ndryshon (pa të, zgjidhja nuk do të ishte e
+          // vetme — shih `Motori.fituar`). Ndryshon vetëm ajo që i thuhet
+          // lojtarit, dhe vetëm në atë çast të vetëm ku ngatërrimi është i
+          // pashmangshëm.
+          if (_motori.sasiaELidhura == nivel.sasiaEShtigjeve && !_motori.fituar)
+            Padding(
+              padding: const EdgeInsets.only(top: 6),
+              child: Text(
+                _f('mbeten_qeliza', vlera: {
+                  'n': '${nivel.sasiaELira - _motori.qelizaTeMbushura}'
+                }),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: n.theksi,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
         ],
       ),
     );

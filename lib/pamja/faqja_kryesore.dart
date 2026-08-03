@@ -5,6 +5,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../app/ads.dart';
 import '../te_dhena/katalogu.dart';
 import '../te_dhena/perkthimi.dart';
 import '../te_dhena/ruajtja.dart';
@@ -95,6 +96,11 @@ class FaqjaKryesore extends StatelessWidget {
                   }),
                   const SizedBox(height: 18),
                   _udhezimet(n, f),
+                  // Banderola rri VETËM këtu, te menyja — kurrë mbi rrjetën.
+                  // Kur nuk ka reklamë (web, pa rrjet, pëlqim i refuzuar) zë
+                  // zero hapësirë, ndaj faqja duket njësoj si më parë.
+                  const SizedBox(height: 12),
+                  const Center(child: BannerSlot()),
                 ],
               ),
             ),

@@ -1,15 +1,23 @@
 /// Girih — lidh nyjet, zbulo yllin.
 ///
-/// Lojë enigmash me 240 nivele, plotësisht jashtë linje: pa llogari, pa rrjet,
-/// pa reklama, pa blerje brenda aplikacionit dhe pa asnjë thirrje drejt një
-/// shërbimi me pagesë. Kjo është edhe zgjedhje produkti edhe zgjedhje kostoje —
-/// një lojë që nuk flet me askënd nuk mund të shpenzojë asgjë sado shumë të
-/// luhet.
+/// Lojë enigmash me 300 nivele: pa llogari, pa blerje brenda aplikacionit dhe
+/// pa asnjë thirrje drejt një shërbimi me pagesë. **Vetë loja luhet e plotë pa
+/// internet** — nivelet janë të ngulura në kod dhe përparimi rri në pajisje.
+///
+/// 🚨 Nga 1.2.0 aplikacioni ka reklama, pra nuk është më «pa rrjet fare». Ky
+/// dallim është i rëndësishëm dhe nuk duhet zbutur askund: te listimi, te
+/// politika e privatësisë dhe te «Siguria e të dhënave» duhet thënë
+/// **«luhet pa internet»**, jo «nuk lidhet me internetin». E dyta do të ishte
+/// e pavërtetë, dhe kundërshtia mes listimit dhe Data safety është nga shkaqet
+/// më të shpeshta të pezullimit te Play.
 library;
+
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'app/ads.dart';
 import 'pamja/faqja_kryesore.dart';
 import 'pamja/tema.dart';
 import 'te_dhena/ruajtja.dart';
@@ -19,6 +27,10 @@ Future<void> main() async {
   final ruajtja = await Ruajtja.hap();
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  // Pa `await`: nisja e reklamave përfshin formularin e pëlqimit dhe një
+  // udhëtim rrjeti. Loja nuk pret asgjë prej tyre — banderola thjesht shfaqet
+  // pak çaste më vonë, ose kurrë.
+  unawaited(Ads.start());
   runApp(Girih(ruajtja: ruajtja));
 }
 
