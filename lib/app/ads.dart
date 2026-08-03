@@ -227,7 +227,7 @@ class Ads {
               if (!done.isCompleted) done.complete(false);
             },
           );
-          unawaited(ad.show(onUserEarnedReward: (AdWithoutView _, RewardItem __) {
+          unawaited(ad.show(onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
             earned = true;
           }));
         },
