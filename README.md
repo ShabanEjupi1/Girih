@@ -13,9 +13,15 @@ Live: <https://girih.spacecode.tech>
   ia refuzon, dhe ai ka të drejtë.
 * **Niveli ruhet si zgjidhja e vet** — nyjet dhe muret nxirren nga forma. Prandaj
   një nivel i pazgjidhshëm nuk shprehet dot fare, dhe ndihma është e menjëhershme.
-* **Pa rrjet, pa llogari, pa reklama, pa blerje.** Loja nuk bën asnjë kërkesë
-  jashtë pajisjes. Kjo do të thotë gjithashtu se sado shumë të luhet, nuk kushton
-  asnjë cent — asgjë s'varet nga një shërbim me faturë.
+* **Luhet pa internet; pa llogari, pa blerje.** Nivelet janë brenda paketës dhe
+  përparimi rri në pajisje, ndaj asgjë nuk pritet nga rrjeti. Sado shumë të
+  luhet, nuk kushton asnjë cent — asnjë shërbim me faturë nuk preket.
+* 🚨 **Nga 1.2.0 ka reklama (AdMob), dhe VETËM ato prekin internetin.** Prandaj
+  fraza e saktë kudo është «luhet pa internet», jo «nuk lidhet me internetin».
+  E dyta ishte e vërtetë deri te 1.1.0 dhe tani do të ishte gënjeshtër — dhe
+  një listim që kundërshton «Sigurinë e të dhënave» te Play është nga shkaqet
+  më të shpeshta të pezullimit. Premtimi u hoq njëkohësisht nga katër vende:
+  `store/listimi.json` (sq + en-US), ky skedar dhe `web/privatesia.html`.
 * 🕌 Pa qenie të gjalla dhe pa fat: e gjithë grafika është gjeometri girih e
   vizatuar me kod. Zero skedarë pamjeje në depo, pra zero detyrime licence.
 

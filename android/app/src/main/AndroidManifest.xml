@@ -1,8 +1,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 🚨 Deri te 1.1.0 kjo lojë nuk kërkonte ASNJË leje — ishte e vetmja nga
+         të tria. Reklamat e sollën `INTERNET`, dhe kjo ka pasoja që nuk duken
+         te kodi: «Siguria e të dhënave» te Play kalon nga «nuk mblidhet asgjë»
+         te «Identifikues pajisjeje — mblidhen DHE ndahen, për reklama», dhe
+         çdo premtim «pa reklama» te listimi bëhet i rremë.
+         Loja vetë mbetet e plotë pa rrjet: nivelet janë në kod, përparimi në
+         pajisje. Interneti i duhet VETËM reklamës. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- ⚠️ `com.google.android.gms.permission.AD_ID` NUK shkruhet këtu: e shton
+         vetë `google_mobile_ads` gjatë bashkimit të manifesteve, dhe Play-i
+         shikon manifestin e BASHKUAR te AAB-ja. Shkrimi me dorë nuk prish gjë,
+         por fsheh se nga vjen. Shih memory `play-artefaktet-e-vjetra-bllokojne`. -->
+
     <application
         android:label="Girih"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <!-- Identifikuesi i aplikacionit te AdMob. Pa këtë rresht aplikacioni
+             RRËZOHET në nisje me një përjashtim të qartë nga SDK-ja — jo në
+             heshtje, ndaj s'ka si të kalojë pa u vënë re.
+             ⚠️ Ky është i GIRIH-ut (`~4045126137`). Mat! e ka `~3928973421`
+             dhe Tokërrgjiku `~3673667026`: e njëjta llogari AdMob, tri
+             aplikacione. Një identifikues i huaj nuk jep gabim — jep zero
+             mbushje, që zbulohet vetëm javë më vonë te raportet. -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1776059573171352~4045126137"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

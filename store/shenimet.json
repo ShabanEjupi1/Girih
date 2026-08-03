@@ -1,21 +1,22 @@
 {
   "_koment": [
     "Emri i lëshimit dhe shënimet për çdo gjuhë, të lexuara nga store/tools/play.mjs:",
-    "  node store/tools/play.mjs <çelësi.json> ngarko tech.spacecode.girih app.aab alpha store/shenimet.json",
+    "  node store/tools/play.mjs <çelësi.json> ngarko tech.spacecode.girih app.aab production store/shenimet.json",
     "🚨 Emri NUK u shfaqet përdoruesve — shërben vetëm që ti ta dallosh lëshimin te Console-i.",
-    "🚨 Shënimet i shihen testuesit: KUFIRI ËSHTË 500 SHKRONJA për gjuhë, dhe vetëm gjuhët që",
+    "🚨 Shënimet i shohin përdoruesit: KUFIRI ËSHTË 500 SHKRONJA për gjuhë, dhe vetëm gjuhët që",
     "   ekzistojnë te listimi (sq dhe en-US). Një gjuhë e panjohur e rrëzon :commit-in.",
     "🚨 Emri i lëshimit: maksimumi 50 shkronja.",
-    "🚨 «gjendja»: sa kohë aplikacioni është «Draft» te Console-i, Play pranon VETËM «draft» —",
-    "   një «completed» bie te :commit me «Only releases with status draft may be created on",
-    "   draft app», dhe bie PASI AAB-ja ka hipur. Pas publikimit të parë ktheje në «completed».",
+    "✅ «gjendja» u kthye në «completed» më 2026-08-03: aplikacioni doli nga «Draft» kur",
+    "   versionCode 2 u botua te production. Sa kohë ishte draft, Play pranonte VETËM «draft»",
+    "   («Only releases with status draft may be created on draft app»); tani është e kundërta —",
+    "   një «draft» te një aplikacion i botuar e lë lëshimin të varur, pa dalë kurrë te njeri.",
     "🚨 MOS e redakto këtë skedar me perl ose sed pa `-CSD`: një kalim i vetëm pa të e shkruan",
     "   tekstin dy herë të koduar (ë → Ã«), dhe JSON-i mbetet i vlefshëm ndaj gabimi nuk duket."
   ],
-  "gjendja": "draft",
-  "emri": "1.1.0 (2) — kalimi i shpejtë mes niveleve",
+  "gjendja": "completed",
+  "emri": "1.2.0 (3) — dy botë të reja dhe reklamat",
   "shenimet": {
-    "sq": "• I ri: kalim i shpejtë mes niveleve. Butoni «Nivelet» hap rrjetën e kësaj bote me yjet dhe rekordin e lëvizjeve, dhe kalon aty ku prek — pa u kthyer te menyja.\n• I ri: një shigjetë për nivelin e mëparshëm, pranë daljes.\n• U rregullua: te disa shfletues loja mbetej me ndërtimin e vjetër dhe niveli nuk ndryshonte pas fitores. Kjo prek vetëm versionin në internet.",
-    "en-US": "• New: quick jumping between levels. The \"Levels\" button opens this world's grid with your stars and best move count, and jumps wherever you tap — without going back to the menu.\n• New: an arrow to the previous level, next to the exit.\n• Fixed: on some browsers the game kept serving the old build and the level would not change after a win. This affected the web version only."
+    "sq": "• Dy botë të reja: Muqarnasi (13×13) dhe Labirinti (14×14). 60 nivele të reja — gjithsej 300, secili me një zgjidhje të vetme.\n• U rregullua: kur i lidhje të gjitha nyjet por rrjeta mbetej me vrima, loja nuk thoshte asgjë dhe dukej sikur mungonte butoni për të vazhduar. Tani të tregon sa qeliza kanë mbetur bosh.\n• Ndihmat fitohen si më parë duke luajtur, dhe tani edhe duke parë një reklamë, po deshe.\n• Loja luhet e plotë pa internet, si gjithmonë.",
+    "en-US": "• Two new worlds: Muqarnas (13×13) and Labyrinth (14×14). 60 new levels — 300 in total, each with exactly one solution.\n• Fixed: when every knot was linked but the grid still had holes, the game said nothing and it looked like the continue button was missing. It now tells you how many cells are still empty.\n• Hints are still earned by playing, and now also by watching an ad if you want to.\n• The game plays fully offline, as always."
   }
 }

@@ -15,9 +15,22 @@ import 'package:girih/loja/zgjidhesi.dart';
 
 const int nivelePerBote = 30;
 
-/// Tetë botë, secila me rrjetën e vet dhe me formën e vet. Rritja e madhësisë
+/// Dhjetë botë, secila me rrjetën e vet dhe me formën e vet. Rritja e madhësisë
 /// nuk mjafton si përparim vështirësie: nga bota 6 e tutje rrjeta merr edhe mure,
 /// dhe një rrjetë me vrima luhet krejt ndryshe nga një katror i plotë.
+///
+/// 🚨 **Numri i çifteve është leva e vërtetë e vështirësisë, jo përmasa.**
+/// Shtigjet e gjata lënë liri dhe zgjidhen me intuitë; shtigjet e shkurtra janë
+/// kufizim, dhe një rrjetë e ngopur me çifte të shkurtra zgjidhet vetëm me
+/// arsyetim. Prandaj dy botët e fundit e mbajnë brezin lart: 13×13 me 20–28 dhe
+/// 14×14 me 24–30 çifte. E njëjta arsye e kthyer përmbys shpjegon pse prodhimi
+/// bie kur brezi ulet — një rrjetë e madhe me pak çifte nuk ka zgjidhje të
+/// vetme, ndaj `Zgjidhesi` i hedh të gjithë kandidatët.
+///
+/// ⛔ **Tavani i vërtetë është kodimi: 36 shtigje.** Çdo qelizë ruhet si një
+/// karakter bazë-36 (`Nivel.kodo`), pra id-ja më e madhe e mundshme e një
+/// shtegu është 35. Një botë me `maksC` mbi 36 do të prodhonte nivele që
+/// duken të vlefshme dhe dekodohen gabim. 30 lë hapësirë të sigurt.
 final bote = <Bota>[
   Bota('Fillimi', 5, 5, 4, 6, muret: _paMure),
   Bota('Rrota', 6, 6, 5, 8, muret: _paMure),
@@ -27,6 +40,8 @@ final bote = <Bota>[
   Bota('Oborri', 10, 10, 11, 16, muret: _muretRrotulluese),
   Bota('Kupola', 11, 11, 14, 20, muret: _muretRrotulluese),
   Bota('Nyja', 12, 12, 16, 24, muret: _muretRrotulluese),
+  Bota('Muqarnasi', 13, 13, 20, 28, muret: _muretRrotulluese),
+  Bota('Labirinti', 14, 14, 24, 30, muret: _muretRrotulluese),
 ];
 
 class Bota {

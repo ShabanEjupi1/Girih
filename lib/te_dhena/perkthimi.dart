@@ -38,6 +38,14 @@ const _sq = <String, String>{
   'yje': 'yje',
   'ndihma_mbetur': 'Ndihma të mbetura',
   'pa_ndihma': 'S\'ke më ndihma — mbaro nivele për të fituar të reja',
+  'pa_ndihma_titull': 'S\'ke më ndihma',
+  'ndihme_me_reklame': 'Shih një reklamë të shkurtër dhe merr një ndihmë. '
+      'Ndihma jepet edhe nëse reklama nuk ngarkohet.',
+  'shih_reklamen': 'Shih reklamën',
+  'jo_faleminderit': 'Jo, faleminderit',
+  // Shfaqet vetëm kur çdo çift është lidhur por rrjeta ka mbetur me vrima —
+  // çasti i vetëm ku lojtari mendon se e mbaroi nivelin dhe loja hesht.
+  'mbeten_qeliza': 'Të gjitha nyjet janë lidhur — mbeten @n qeliza bosh',
   'seria': 'Seria',
   'dite': 'ditë',
   'gjuha': 'Gjuha',
@@ -98,6 +106,12 @@ const _en = <String, String>{
   'yje': 'stars',
   'ndihma_mbetur': 'Hints left',
   'pa_ndihma': 'No hints left — finish levels to earn more',
+  'pa_ndihma_titull': 'No hints left',
+  'ndihme_me_reklame': 'Watch a short ad and get one hint. '
+      'You get the hint even if the ad fails to load.',
+  'shih_reklamen': 'Watch the ad',
+  'jo_faleminderit': 'No, thanks',
+  'mbeten_qeliza': 'Every knot is linked — @n cells are still empty',
   'seria': 'Streak',
   'dite': 'days',
   'gjuha': 'Language',
