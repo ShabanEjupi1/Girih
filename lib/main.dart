@@ -15,18 +15,19 @@ library;
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'app/ads.dart';
 import 'pamja/faqja_kryesore.dart';
+import 'pamja/orientimi.dart';
 import 'pamja/tema.dart';
 import 'te_dhena/ruajtja.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final ruajtja = await Ruajtja.hap();
-  await SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  // 🚨 Orientimi NUK kyçet më këtu. Kyçi pa kushte ishte shkaku pse loja del si
+  // shirit i ngushtë te Google Play Games on PC. Vendimi merret tani sipas
+  // madhësisë së dritares, te [OrientimiPershtatur].
   // Pa `await`: nisja e reklamave përfshin formularin e pëlqimit dhe një
   // udhëtim rrjeti. Loja nuk pret asgjë prej tyre — banderola thjesht shfaqet
   // pak çaste më vonë, ose kurrë.
@@ -49,6 +50,10 @@ class Girih extends StatelessWidget {
         title: 'Girih',
         debugShowCheckedModeBanner: false,
         theme: temaPer(ruajtja.cilesimet.pamja),
+        // `builder` dhe jo një mbështjellës rreth `home`-it: kështu rregulli
+        // vlen edhe për faqet e hapura me Navigator, jo vetëm për të parën.
+        builder: (context, child) =>
+            OrientimiPershtatur(child: child ?? const SizedBox.shrink()),
         home: FaqjaKryesore(ruajtja: ruajtja),
       ),
     );

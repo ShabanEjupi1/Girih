@@ -12,6 +12,7 @@ import '../loja/nivel.dart';
 import '../te_dhena/katalogu.dart';
 import '../te_dhena/perkthimi.dart';
 import '../te_dhena/ruajtja.dart';
+import 'orientimi.dart';
 import 'piktori.dart';
 import 'tema.dart';
 
@@ -253,7 +254,11 @@ class _FaqjaELojesState extends State<FaqjaELojes>
     return Scaffold(
       backgroundColor: n.sfondi,
       body: SafeArea(
-        child: Column(
+        // Fusha e mban vetë raportin, ndaj rrjeta nuk shtrembërohet as në një
+        // dritare 16:9; ajo që shtrembërohet janë koka dhe këmbët, të cilat pa
+        // kufi tërhiqen deri te të dy skajet dhe e zbrazin mesin e faqes.
+        child: Kufizuar(
+          child: Column(
           children: [
             _koka(n),
             Expanded(
@@ -290,6 +295,7 @@ class _FaqjaELojesState extends State<FaqjaELojes>
             _kembet(n),
             if (_motori.fituar) _fletaEFitores(n),
           ],
+          ),
         ),
       ),
     );
