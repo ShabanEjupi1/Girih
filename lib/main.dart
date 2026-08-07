@@ -17,6 +17,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'app/ads.dart';
+import 'app/analitika.dart';
 import 'pamja/faqja_kryesore.dart';
 import 'pamja/orientimi.dart';
 import 'pamja/tema.dart';
@@ -31,6 +32,9 @@ Future<void> main() async {
   // Pa `await`: nisja e reklamave përfshin formularin e pëlqimit dhe një
   // udhëtim rrjeti. Loja nuk pret asgjë prej tyre — banderola thjesht shfaqet
   // pak çaste më vonë, ose kurrë.
+  // Matja nis PARA reklamave: një hapje që dështon te formulari i pëlqimit
+  // duhet numëruar prapë, përndryshe humbasin pikërisht hapjet problematike.
+  unawaited(Analitika.nis());
   unawaited(Ads.start());
   runApp(Girih(ruajtja: ruajtja));
 }
