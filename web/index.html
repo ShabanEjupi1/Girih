@@ -92,7 +92,8 @@
       <li><a href="https://chess.spacecode.tech/">Shah Mat</a> — Luaj shah falas në shqip: kundër kompjuterit, kundër një shoku në të njëjtin telefon, ose …</li>
       <li><a href="https://tokerrgjik.spacecode.tech/">Tokërrgjik</a> — Tokërrgjiku, loja e vjetër shqiptare e gurëve (Nine Men's Morris), tani në telefon. Luaj k…</li>
       <li><a href="https://esim.spacecode.tech/">eSIM Space</a> — Ruaj çdo eSIM në një vend: kodi QR gjithnjë me ty, edhe pa internet, edhe pa rrjet. Në shq…</li>
-      <li><a href="https://karvani.spacecode.tech/">Karvani</a> — Ngasje në botë të hapur me makina, ekskavator dhe automjete të rënda: rrëzo ndërtesa, shty…</li>
+      <li><a href="https://karvani.spacecode.tech/">Drive Inside City</a> — Vozit nëpër një qytet të hapur që gjenerohet vetë: hyr me automjet brenda ndërtesave, merr…</li>
+      <li><a href="https://kulla.spacecode.tech/">Tower Together</a> — Me radhë vendosni blloqe mbi një kullë të përbashkët: në mes është e sigurt (1 pikë), i da…</li>
       <li><a href="https://halalbankkosova.me/">HalalBank</a> — Nëntë kontrata islame dhe llogaritja e zekatit, mbi një libër ku kamata nuk përfaqësohet d…</li>
     </ul>
   </section>
@@ -117,12 +118,40 @@
    gjatë nisjes, ndaj fiton edhe kur të dyja janë `!important`. */
 html, body { height: auto !important; overflow: auto !important; margin: 0; }
 
+/* 🚨🚨🚨 APLIKACIONI DUHET TË RRIJË SIPËR, DHE KJO KËRKON FLEX — 11-08-2026
+
+   Shabani: *«each app in subdomain of spacecode is showing in top of about of
+   each app»*. Ai po e shihte pikërisht atë që bënte kodi:
+
+   Blloku i SEO-së shkruhet para `</body>`, kurse Flutter-i dhe Godot-i e
+   MONTOJNË pamjen e tyre te `<body>` **pasi** nis skripti — pra edhe më vonë.
+   Përderisa `flutter-view` ishte `position:absolute`, kjo nuk kishte rëndësi:
+   ajo rrinte mbi gjithçka. Por rregulli më sipër e bëri `position:relative`
+   (që faqja të rrotullohet), dhe një element i shtuar i fundit te rrjedha
+   normale del **poshtë** atij që u shkrua para tij. Rrjedhoja: teksti «rreth»
+   zë krye të faqes dhe aplikacioni zbret poshtë tij.
+
+   🔑 Rendi te rrjedha nuk zgjidhet dot me DOM: skripti i Flutter-it është
+   `async` dhe e shton pamjen kur të dojë. Ai zgjidhet me `order` te një kuti
+   flex, e cila e rendit sipas VLERËS, jo sipas radhës së shkrimit — pra pavarësisht
+   se kur mbërrin aplikacioni, ai mbetet i pari.
+
+   ⚠️ `body{display:flex}` NUK e prish asnjë nga të dyja paraqitjet: si
+   `flutter-view` ashtu edhe `<canvas>` marrin lartësi të shpallur `100dvh` më
+   poshtë, ndaj asnjëra nuk varet nga shtrirja automatike e flex-it. */
+body {
+  display: flex !important;
+  flex-direction: column !important;
+}
+body > * { flex: 0 0 auto; }
+
 /* Flutter: kutia e pamjes bëhet element normal me lartësinë e ekranit. */
 flutter-view, flt-glass-pane[flt-view-id], body > flutter-view {
   position: relative !important;
   display: block !important;
   width: 100% !important;
   height: 100dvh !important;
+  order: 1 !important;
 }
 /* Godot: canvas-i dhe shtresa e nisjes. `#status` është `position:absolute`
    mbi `body`, pra shembet njësoj — `fixed` e mban mbi ekran gjatë ngarkimit. */
@@ -131,7 +160,10 @@ body > canvas, canvas#canvas {
   width: 100% !important;
   height: 100dvh !important;
   outline: none;
+  order: 1 !important;
 }
+/* Footer-i i fundit, gjithmonë. Shih §🚨🚨🚨 më lart. */
+footer.seo-permbajtja { order: 9 !important; }
 #status, #status-progress, #status-notice {
   position: fixed !important;
 }
