@@ -54,16 +54,16 @@ class Ads {
   /// identifikuesi i aplikacionit ndryshon: Girih `~4045126137`, Mat!
   /// `~3928973421`, Tokërrgjik `~3673667026`. Ai i Girih-ut rri te manifesti.
   /// Një identifikues i huaj nuk jep gabim — jep zero mbushje.
-  static const String _bannerLive = 'ca-app-pub-1776059573171352/1320438606';
-  static const String _interstitialLive = 'ca-app-pub-1776059573171352/9007356931';
-  static const String _rewardedLive = 'ca-app-pub-1776059573171352/6065498820';
+  static const String _bannerLive = 'ca-app-pub-8491001524308476/4903217121';
+  static const String _interstitialLive = 'ca-app-pub-8491001524308476/7079572292';
+  static const String _rewardedLive = 'ca-app-pub-8491001524308476/2888940647';
 
   // Të krijuara te AdMob-i por të PAPËRDORURA me qëllim. Rrinë të shënuara që
   // të mos rikrijohen, dhe që një njësi me zero kërkesa te konsola të ketë
   // shpjegim:
-  //   app open           ca-app-pub-1776059573171352/4703601688
-  //   native advanced    ca-app-pub-1776059573171352/9632494735
-  //   rewarded interst.  ca-app-pub-1776059573171352/8444250157
+  //   app open           ca-app-pub-8491001524308476/1827245611
+  //   native advanced    ca-app-pub-8491001524308476/4174102153
+  //   rewarded interst.  ca-app-pub-8491001524308476/6800265494
 
   /// Njësitë e provës së Google-it. Kthejnë gjithmonë një reklamë, kudo, dhe
   /// klikimi mbi to nuk numërohet askund.

@@ -14,9 +14,9 @@
     "   tekstin dy herë të koduar (ë → Ã«), dhe JSON-i mbetet i vlefshëm ndaj gabimi nuk duket."
   ],
   "gjendja": "completed",
-  "emri": "1.2.0 (3) — dy botë të reja dhe reklamat",
+  "emri": "1.2.1 (4) — reklamat e ndihmave punojnë",
   "shenimet": {
-    "sq": "• Dy botë të reja: Muqarnasi (13×13) dhe Labirinti (14×14). 60 nivele të reja — gjithsej 300, secili me një zgjidhje të vetme.\n• U rregullua: kur i lidhje të gjitha nyjet por rrjeta mbetej me vrima, loja nuk thoshte asgjë dhe dukej sikur mungonte butoni për të vazhduar. Tani të tregon sa qeliza kanë mbetur bosh.\n• Ndihmat fitohen si më parë duke luajtur, dhe tani edhe duke parë një reklamë, po deshe.\n• Loja luhet e plotë pa internet, si gjithmonë.",
-    "en-US": "• Two new worlds: Muqarnas (13×13) and Labyrinth (14×14). 60 new levels — 300 in total, each with exactly one solution.\n• Fixed: when every knot was linked but the grid still had holes, the game said nothing and it looked like the continue button was missing. It now tells you how many cells are still empty.\n• Hints are still earned by playing, and now also by watching an ad if you want to.\n• The game plays fully offline, as always."
+    "sq": "• U rregullua: reklama që jep ndihma nuk hapej fare — shtypja e butonit nuk bënte asgjë. Tani ngarkohet dhe ndihma jepet.\n• Reklamat brenda lojës shfaqeshin bosh; edhe kjo u rregullua.\n• Loja luhet e plotë pa internet, si gjithmonë.",
+    "en-US": "• Fixed: the ad that grants hints never opened — tapping the button did nothing. It now loads and the hint is granted.\n• Ads inside the game were showing blank; that is fixed too.\n• The game plays fully offline, as always."
   }
 }

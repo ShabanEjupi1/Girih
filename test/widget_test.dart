@@ -1,30 +1,36 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+/// Provë nisjeje: a ngrihet aplikacioni i vërtetë deri te faqja kryesore?
+///
+/// 🚨 Deri më 19-08-2026 këtu rrinte shablloni i Flutter-it — numëruesi me
+/// `MyApp` dhe butonin `+`, që kjo lojë nuk i ka pasur kurrë. Skedari NUK
+/// përpilohej («The name 'MyApp' isn't a class»), ndaj `flutter analyze` binte
+/// dhe bashkë me të i gjithë zinxhiri i botimit te [[ndert-dhe-boto.sh]].
+/// Dështonte i heshtur sepse asnjë ndërtim i mëparshëm nuk e kishte kaluar
+/// analizën — 1.2.0 doli nga një rrugë tjetër.
+///
+/// 🔑 Prandaj nuk u fshi thjesht: një skedar i fshirë s'do të kishte kapur
+/// asgjë. Kjo provë ngre `Girih`-un e vërtetë me `Ruajtja`-n e vërtetë, pra
+/// kap një `main.dart` që s'ndërtohet dot — pikërisht ajo që shablloni s'e bënte.
+///
+/// ⚠️ `Ads.start()` NUK thirret: reklamat kërkojnë rrjet dhe formularin e
+/// pëlqimit, dhe një provë që pret rrjetin nuk është më provë.
+library;
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:girih/main.dart';
+import 'package:girih/pamja/faqja_kryesore.dart';
+import 'package:girih/te_dhena/ruajtja.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('aplikacioni ngrihet deri te faqja kryesore', (tester) async {
+    // Pa këtë `Ruajtja.hap()` pret një kanal që te provat nuk ekziston.
+    SharedPreferences.setMockInitialValues({});
+    final ruajtja = await Ruajtja.hap();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    await tester.pumpWidget(Girih(ruajtja: ruajtja));
+    await tester.pumpAndSettle();
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.byType(FaqjaKryesore), findsOneWidget);
   });
 }

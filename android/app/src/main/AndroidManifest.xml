@@ -25,7 +25,7 @@
              mbushje, që zbulohet vetëm javë më vonë te raportet. -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-1776059573171352~4045126137"/>
+            android:value="ca-app-pub-8491001524308476~6935996861"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
