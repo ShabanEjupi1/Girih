@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../app/ads.dart';
+import '../app/vleresimi.dart';
 import '../loja/motori.dart';
 import '../loja/nivel.dart';
 import '../te_dhena/katalogu.dart';
@@ -148,6 +149,12 @@ class _FaqjaELojesState extends State<FaqjaELojes>
       await widget.ruajtja.shenoDitoren(widget.nivel.id.substring(2));
     }
     if (mounted) setState(() {});
+
+    // 🔎 Momenti i mirë: niveli sapo u kalua dhe fleta e fitores është e qetë.
+    // Kërkesa e Play-it shfaqet shumë rrallë (një herë për version, dhe vetëm
+    // pas kushteve te app/vleresimi.dart) — ndaj ky rresht NUK e prish rrjedhën
+    // e lojës. Reklama e kalimit vjen më vonë, te _kalo, jo këtu.
+    unawaited(Vleresimi.momentiMire());
   }
 
   Future<void> _ndihmo() async {

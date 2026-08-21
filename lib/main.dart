@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 
 import 'app/ads.dart';
 import 'app/analitika.dart';
+import 'app/vleresimi.dart';
 import 'pamja/faqja_kryesore.dart';
 import 'pamja/orientimi.dart';
 import 'pamja/tema.dart';
@@ -35,6 +36,9 @@ Future<void> main() async {
   // Matja nis PARA reklamave: një hapje që dështon te formulari i pëlqimit
   // duhet numëruar prapë, përndryshe humbasin pikërisht hapjet problematike.
   unawaited(Analitika.nis());
+  // 🔎 Numëruesi i hapjeve për kërkesën e vlerësimit. Vetë kërkesa nuk shfaqet
+  // kurrë këtu — vetëm pas një niveli të kaluar. Shih app/vleresimi.dart.
+  unawaited(Vleresimi.nis(versioni: '1.2.1+4'));
   unawaited(Ads.start());
   runApp(Girih(ruajtja: ruajtja));
 }

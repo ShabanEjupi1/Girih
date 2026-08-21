@@ -3,6 +3,7 @@ library;
 
 import 'package:flutter/material.dart';
 
+import '../app/vleresimi.dart';
 import '../te_dhena/perkthimi.dart';
 import '../te_dhena/ruajtja.dart';
 import 'tema.dart';
@@ -63,6 +64,15 @@ class _FaqjaECilesimeveState extends State<FaqjaECilesimeve> {
           _celes(n, f('animacione'), c.animacione,
               (v) => _ndrysho((x) => x.animacione = v)),
           const SizedBox(height: 24),
+          // 🔎 Rruga e DYTË drejt Play-it: e nis vetë lojtari, ndaj s'ka as
+          // kuotë as kufij. Ajo hap listimin, jo dritaren e vogël — dhe kjo
+          // është e vetmja mënyrë e lejuar për të kërkuar një yll me buton.
+          OutlinedButton.icon(
+            onPressed: () => Vleresimi.hapDyqanin(),
+            icon: const Icon(Icons.star_outline),
+            label: Text(f('vlereso')),
+          ),
+          const SizedBox(height: 12),
           OutlinedButton.icon(
             onPressed: () => _fshij(f),
             icon: const Icon(Icons.delete_outline),
