@@ -1,22 +1,22 @@
 {
-  "_koment": [
-    "Emri i lëshimit dhe shënimet për çdo gjuhë, të lexuara nga store/tools/play.mjs:",
-    "  node store/tools/play.mjs <çelësi.json> ngarko tech.spacecode.girih app.aab production store/shenimet.json",
-    "🚨 Emri NUK u shfaqet përdoruesve — shërben vetëm që ti ta dallosh lëshimin te Console-i.",
-    "🚨 Shënimet i shohin përdoruesit: KUFIRI ËSHTË 500 SHKRONJA për gjuhë, dhe vetëm gjuhët që",
-    "   ekzistojnë te listimi (sq dhe en-US). Një gjuhë e panjohur e rrëzon :commit-in.",
-    "🚨 Emri i lëshimit: maksimumi 50 shkronja.",
-    "✅ «gjendja» u kthye në «completed» më 2026-08-03: aplikacioni doli nga «Draft» kur",
-    "   versionCode 2 u botua te production. Sa kohë ishte draft, Play pranonte VETËM «draft»",
-    "   («Only releases with status draft may be created on draft app»); tani është e kundërta —",
-    "   një «draft» te një aplikacion i botuar e lë lëshimin të varur, pa dalë kurrë te njeri.",
-    "🚨 MOS e redakto këtë skedar me perl ose sed pa `-CSD`: një kalim i vetëm pa të e shkruan",
-    "   tekstin dy herë të koduar (ë → Ã«), dhe JSON-i mbetet i vlefshëm ndaj gabimi nuk duket."
-  ],
-  "gjendja": "completed",
-  "emri": "1.2.1 (4) — reklamat e ndihmave punojnë",
-  "shenimet": {
-    "sq": "• U rregullua: reklama që jep ndihma nuk hapej fare — shtypja e butonit nuk bënte asgjë. Tani ngarkohet dhe ndihma jepet.\n• Reklamat brenda lojës shfaqeshin bosh; edhe kjo u rregullua.\n• Loja luhet e plotë pa internet, si gjithmonë.",
-    "en-US": "• Fixed: the ad that grants hints never opened — tapping the button did nothing. It now loads and the hint is granted.\n• Ads inside the game were showing blank; that is fixed too.\n• The game plays fully offline, as always."
-  }
+   "_koment" : [
+      "Emri i lëshimit dhe shënimet për çdo gjuhë, të lexuara nga store/tools/play.mjs:",
+      "  node store/tools/play.mjs <çelësi.json> ngarko tech.spacecode.girih app.aab production store/shenimet.json",
+      "🚨 Emri NUK u shfaqet përdoruesve — shërben vetëm që ti ta dallosh lëshimin te Console-i.",
+      "🚨 Shënimet i shohin përdoruesit: KUFIRI ËSHTË 500 SHKRONJA për gjuhë, dhe vetëm gjuhët që",
+      "   ekzistojnë te listimi (sq dhe en-US). Një gjuhë e panjohur e rrëzon :commit-in.",
+      "🚨 Emri i lëshimit: maksimumi 50 shkronja.",
+      "✅ «gjendja» u kthye në «completed» më 2026-08-03: aplikacioni doli nga «Draft» kur",
+      "   versionCode 2 u botua te production. Sa kohë ishte draft, Play pranonte VETËM «draft»",
+      "   («Only releases with status draft may be created on draft app»); tani është e kundërta —",
+      "   një «draft» te një aplikacion i botuar e lë lëshimin të varur, pa dalë kurrë te njeri.",
+      "🚨 MOS e redakto këtë skedar me perl ose sed pa `-CSD`: një kalim i vetëm pa të e shkruan",
+      "   tekstin dy herë të koduar (ë → Ã«), dhe JSON-i mbetet i vlefshëm ndaj gabimi nuk duket."
+   ],
+   "emri" : "1.3.0 (5) — vlerëso lojën te Play",
+   "gjendja" : "completed",
+   "shenimet" : {
+      "en-US" : "• The game now asks once whether you would like to rate it, and only after you finish a level — never mid-puzzle.\n• Settings has a new «Rate the game on Play» button for anyone who prefers to do it themselves.\n• Nothing is ever given in return for a rating, and you are never asked after a loss.\n• The game still plays fully offline.",
+      "sq" : "• Tani loja të pyet një herë të vetme nëse do ta vlerësosh, dhe vetëm pasi ke kaluar një nivel — kurrë në mes të lojës.\n• Te Cilësimet u shtua butoni «Vlerëso lojën te Play», për këdo që do ta bëjë vetë.\n• Asnjë shpërblim nuk jepet për vlerësim, dhe asnjë pyetje nuk vjen pas humbjes.\n• Loja luhet e plotë pa internet, si gjithmonë."
+   }
 }

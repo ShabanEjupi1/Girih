@@ -38,7 +38,7 @@ Future<void> main() async {
   unawaited(Analitika.nis());
   // 🔎 Numëruesi i hapjeve për kërkesën e vlerësimit. Vetë kërkesa nuk shfaqet
   // kurrë këtu — vetëm pas një niveli të kaluar. Shih app/vleresimi.dart.
-  unawaited(Vleresimi.nis(versioni: '1.2.1+4'));
+  unawaited(Vleresimi.nis(versioni: '1.3.0+5'));
   unawaited(Ads.start());
   runApp(Girih(ruajtja: ruajtja));
 }
